@@ -1,80 +1,168 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+description: "Get up and running on the latest version of HubSpot’s developer platform."
 ---
 
-## Get started in three steps
+## Quickstart
 
-Get your documentation site running locally and make your first customization.
+Get up and running on the latest version of HubSpot’s developer platform.
 
-### Step 1: Set up your local environment
+Get started with app development by building and deploying a simple boilerplate app.
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+If you don’t have a developer account yet, [create a new developer account](https://app.hubspot.com/developer-signup). If you previously created a developer account prior to August 29, 2025, see the guide for details on opting into the new developer platform.
 
-### Step 2: Deploy your changes
+### Set up your local environment
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+Before getting started, install the latest version of the HubSpot CLI. In a terminal window, run the following command:
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+```bash
+npm install -g @hubspot/cli && hs init
+```
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+The CLI needs to be version 7.6.0 or later.
 
-### Step 3: Go live
+You can check which version of the CLI you have by running:
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+```bash
+hs --version
+```
 
-## Next steps
+If needed, update to the latest HubSpot CLI:
 
-Now that you have your docs running, explore these key features:
+```bash
+npm install -g @hubspot/cli@latest
+```
+
+The `hs init` command will create a CLI configuration file and authenticate your HubSpot account. Follow the prompts to generate a Personal Access Key in your account, then copy and paste it into the terminal to save your configuration. It’s recommended that you make this account your default in the CLI.
+
+You can run `hs account auth` at any time to authenticate a different HubSpot account.
+
+### Create and upload a project
+
+1. Get started
+
+With the CLI installed, run:
+
+```bash
+hs get-started
+```
+
+2. Configure your project details
+
+You’ll be greeted with a welcome message and can begin setting up your project and app. Following the prompts:
+
+- Select **App**.
+- Give your project a name.
+- Set your project’s local directory (by default this will be your current working directory).
+- Upload your project to HubSpot to initialize the first build and deploy.
+
+You’ll then be prompted to install dependencies and upload your project. Installing dependencies before uploading ensures a faster build of the included app card and keeps your local environment consistent with production. This step will add a `package-lock.json` file and `node_modules` directory to the project’s `cards/` directory.
+
+Then, confirm that you want to upload your project to your account.
+
+### Install and preview your app
+
+1. Install your app
+
+After your project deploys, you’ll be prompted to navigate to your HubSpot account to install and preview your app. In the terminal, confirm that you want to open your account. A browser window will open the project details page in HubSpot.
+
+On the project details page, click **Install now** to install the app. You’ll then be taken to the app install page. On the app install page, click **Connect App** to install the app in your account. A confirmation message will appear once the app successfully installs.
+
+At any time, you can return to the project details page either through the terminal or in HubSpot:
+
+- In the terminal, run `hs project open` while in the local project directory.
+- In HubSpot, navigate to **Development** in the main navigation bar, then locate your project under Recently updated projects or through the left sidebar.
+
+2. Start local development
+
+With the project uploaded and installed, start the local development server to preview your app card. In the terminal, navigate into your project directory, then run:
+
+```bash
+hs project dev
+```
+
+As of Google Chrome version 142, you will receive a one-time popup asking for `app.hubspot.com` to access devices on your local network. Select **Accept** to enable local development for your apps.
+
+You can also manage this setting in Chrome under Settings > Privacy & Security > app.hubspot.com > Permissions > Local network access.
+
+When prompted, select the account you want to test in. To test in a developer test account within your production account (recommended), select **Test on a developer test account**. Select an existing test account, or select **Test on a new developer test account**, then follow the prompts to install the app in the test account.
+
+For more advanced testing, you can create configurable test accounts, which can be assigned specific combinations of HubSpot subscription tiers to ensure feature compatibility.
+
+The local development server will then start, and the terminal will provide a link to view the local dev session in HubSpot. Follow the link to open the HubSpot local development page in your account.
+
+3. Setup local development preview
+
+Before you can preview the app card on the contact record, add your new card to the contact record view:
+
+- On the local development page, click **Setup preview**. You’ll be redirected to the contacts index page.
+- Click the name of a contact record.
+- At the top of the middle column of the contact record, click **Customize**.
+- Click **Default view**.
+- Select the tab you want to add the card to. Hover over the location where you want to place the card and click the plus button.
+- In the right sidebar, click the **Card library** tab. Click the **Card types** dropdown menu and select **App** to filter for app cards.
+- Click **Add card** under the app card you created, then click the close button in the top right of the sidebar.
+- In the top right, click **Save and exit**.
+
+You’ll be redirected back to the contact record, and the app card will display with a **Developing locally** tag to indicate that the local development server is waiting to detect local changes.
+
+You will not need to repeat the preview setup steps moving forward, unless you want to change the position of the card or customize another CRM record view.
+
+4. Continue local development
+
+While the local development server runs, it will automatically pick up on any changes saved to the app card’s front-end React file. If you need to make changes to other file types, such as a `.json` configuration file, you’ll need to reupload the project and restart the local development server.
+
+To test this out, make a change to the app card’s local `.jsx` React file, then save your change. For example, update a Text component in the React file:
+
+```jsx
+import React from "react";
+import { Text, Link, List } from "@hubspot/ui-extensions";
+import { hubspot } from "@hubspot/ui-extensions";
+
+hubspot.extend(() => <Extension />);
+
+const Extension = () => {
+  return (
+    <>
+      <Text>
+        Woohoo!
+      </Text>
+      <List variant="unordered-styled">
+        <Link href="https://developers.hubspot.com/docs/platform/ui-components">
+          📖 Explore our library of UI components
+        </Link>
+        <Link href="https://ecosystem.hubspot.com/marketplace/apps/app-cards">
+          📖 Look at the Marketplace collection of apps that contain app cards
+        </Link>
+        <Link href="https://developers.hubspot.com/slack">
+          ▶️ Connect with developers on the #ui-extensions channel on the developer Slack community
+        </Link>
+      </List>
+    </>
+  );
+};
+```
+
+### Next steps
+
+Now that you’ve successfully deployed your quickstart app, check out the following resources to continue building on HubSpot’s developer platform:
 
 <CardGroup cols={2}>
 
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
+<Card title="App configuration" icon="gear" href="/app-configuration">
+  Configure your app settings in HubSpot.
 </Card>
 
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
+<Card title="Manage apps in HubSpot" icon="folder-open" href="/manage-apps">
+  Install, update, and manage your apps.
 </Card>
 
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
+<Card title="Create app cards" icon="square-code" href="/create-app-cards">
+  Learn how to build app cards for CRM records.
 </Card>
 
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
+<Card title="UI extension components" icon="puzzle-piece" href="/ui-extension-components">
+  Explore UI components for building app cards and extensions.
 </Card>
 
 </CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
